@@ -6,17 +6,20 @@ import useFetch from '../hooks/useFetch'
 
 const EditProfileForm = ({ onSubmit, errors, isLoading, profile }) => {
   // const [loc, setloc] = useState({})
-  const [img, setimg] = useState(`${axios.defaults.baseURL}images/${profile.profile}`)
+  const [img, setimg] = useState(profile.profile && `${axios.defaults.baseURL}images/${profile.profile}`)
   const imgRef = useRef()
   const provRef = useRef()
   const cityRef = useRef()
   const postalRef = useRef()
-  const { data: loc } = useFetch('https://ipinfo.io/json?token=45022df7aed476')
+  // const { data: loc } = useFetch('https://ipinfo.io/json?token=45022df7aed476')
   useEffect(() => {
-    !profile?.province && (provRef.current.value = loc.region)
-    !profile?.city && (cityRef.current.value = loc.city)
-    !profile?.postal && (postalRef.current.value = loc.postal)
-  }, [loc])
+    // !profile?.province && (provRef.current.value = loc.region)
+    !profile?.province && (provRef.current.value = 'Punjab')
+    // !profile?.city && (cityRef.current.value = loc.city)
+    !profile?.city && (cityRef.current.value = 'Multan')
+    // !profile?.postal && (postalRef.current.value = loc.postal)
+    !profile?.postal && (postalRef.current.value = 60750)
+  }, [])
   const handleImgChange = () => {
     setimg(URL.createObjectURL(imgRef.current.files[0]))
   }
@@ -72,11 +75,11 @@ const EditProfileForm = ({ onSubmit, errors, isLoading, profile }) => {
           autoComplete='email'
         />
         <MyTextField
-          defaultValue={profile?.phone}
-          label='Phone No'
-          name='phone'
-          errors={errors?.phone}
-          autoComplete='phone'
+          defaultValue={profile?.mobile}
+          label='Mobile No'
+          name='mobile'
+          errors={errors?.mobile}
+          autoComplete='mobile'
         />
         <MyTextField label='Company Name' name='company' defaultValue={profile?.company} />
         <MyTextField label='OEP Licence No' name='licence' defaultValue={profile?.licence} />
@@ -94,7 +97,8 @@ const EditProfileForm = ({ onSubmit, errors, isLoading, profile }) => {
         />
         <MyTextField inputRef={cityRef} label='City' name='city' defaultValue={profile?.city} />
         <MyTextField label='Post Code' name='postal' inputRef={postalRef} defaultValue={profile?.postal} />
-        <MyTextField label='Address' name='address' defaultValue={profile?.address} />
+        <MyTextField label='Office Address' name='address' defaultValue={profile?.address} />
+        <MyTextField label='Office Phone No' name='phone' defaultValue={profile?.phone} />
       </Grid>
       <Button disabled={isLoading} type='submit' fullWidth variant='contained' sx={{ mt: 3, mb: 2 }}>
         Update

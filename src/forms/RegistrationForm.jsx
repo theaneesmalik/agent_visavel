@@ -16,7 +16,7 @@ const RegistrationForm = ({ handleSubmit, errors, isLoading }) => {
         <MyTextField autoComplete='family-name' name='lastName' label='Last Name' errors={errors?.lastName} />
         <MyTextField label='Username' name='username' errors={errors?.username} />
         <MyTextField label='Email' name='email' errors={errors?.email} autoComplete='email' />
-        <MyTextField label='Phone No' name='phone' errors={errors?.phone} autoComplete='phone' />
+        <MyTextField label='Mobile No' name='mobile' errors={errors?.mobile} autoComplete='mobile' />
         <MyTextField
           label='Password'
           name='password'

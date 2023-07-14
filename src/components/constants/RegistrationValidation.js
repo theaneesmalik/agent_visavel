@@ -70,21 +70,21 @@ export const validate = (fd) => {
   }
   updatedErrors.email = fieldErrors
 
-  // Validation logic for phone
+  // Validation logic for mobile
   fieldErrors = []
-  if (!fd.get('phone')) {
-    fieldErrors.push('Phone number is required.')
+  if (!fd.get('mobile')) {
+    fieldErrors.push('Mobile number is required.')
     isValid = false
   }
-  if (fd.get('phone').length !== 11 || !/^03[0-4]\d{8}$/.test(fd.get('phone'))) {
-    fieldErrors.push('Phone number must be 11 digits long.')
+  if (fd.get('mobile').length !== 11 || !/^03[0-4]\d{8}$/.test(fd.get('mobile'))) {
+    fieldErrors.push('Mobile number must be 11 digits long.')
     isValid = false
   }
-  if (!/^03[0-4]\d{8}$/.test(fd.get('phone'))) {
-    fieldErrors.push('Phone number must start with 03, and the third digit should be between 0 to 4.')
+  if (!/^03[0-4]\d{8}$/.test(fd.get('mobile'))) {
+    fieldErrors.push('Mobile number must start with 03, and the third digit should be between 0 to 4.')
     isValid = false
   }
-  updatedErrors.phone = fieldErrors
+  updatedErrors.mobile = fieldErrors
 
   // Validation logic for password
   fieldErrors = []

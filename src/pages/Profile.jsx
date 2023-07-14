@@ -32,7 +32,6 @@ const Profile = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
-  // console.log(profile)
   return (
     <Paper sx={{ flexGrow: 1, p: 5 }}>
       {!profile.isCemplete && (
@@ -45,7 +44,7 @@ const Profile = () => {
           {/* <img src='https://source.unsplash.com/200x200/?man-in-suit-profile' alt='Profile picture' /> */}
           <Avatar
             alt='Profile Picture'
-            src={`${axios.defaults.baseURL}images/${profile.profile}`}
+            src={profile.profile && `${axios.defaults.baseURL}images/${profile.profile}`}
             sx={{ width: '15em', height: '15em', m: '0 auto' }}
           />
         </Grid>
@@ -70,28 +69,47 @@ const Profile = () => {
             </Tabs>
           </Box>
           <CustomTabPanel value={value} index={0}>
-            username: &emsp; &emsp; {profile?.username}
-            <br />
-            email:&emsp; &emsp; &emsp; &emsp;{profile?.email}
-            <br />
-            phone:&emsp;&emsp; &emsp; &emsp;{profile?.phone}
+            <table>
+              <tr>
+                <td>Username:</td>
+                <td>{profile?.username}</td>
+              </tr>
+              <tr>
+                <td>Email:</td>
+                <td>{profile?.email}</td>
+              </tr>
+              <tr>
+                <td>Mobile:</td>
+                <td>{profile?.mobile}</td>
+              </tr>
+            </table>
           </CustomTabPanel>
           <CustomTabPanel value={value} index={1}>
-            Company: {profile?.company}
-            <br />
-            Licence: {profile?.licence}
-            <br />
-            Office Address: {`${profile?.address}, ${profile.city}, ${profile.province}, ${profile.country} `}
+            <table>
+              <tr>
+                <td>Company:</td>
+                <td>{profile?.company}</td>
+              </tr>
+              <tr>
+                <td>Licence:</td>
+                <td>{profile?.licence}</td>
+              </tr>
+              <tr>
+                <td>Office Address:</td>
+                <td>{`${profile?.address ? profile?.address : ''}, ${profile?.city ? profile?.city : ''}, ${
+                  profile?.province ? profile?.province : ''
+                }, ${profile?.country ? profile?.country : ''} `}</td>
+              </tr>
+              <tr>
+                <td>Office Phone:</td>
+                <td>{profile?.phone}</td>
+              </tr>
+            </table>
             <br />
           </CustomTabPanel>
         </Grid>
       </Grid>
     </Paper>
-    // <Container component='main' maxWidth='xs'>
-    //   <Stack>
-    //     <img src='https://assets.leetcode.com/users/avatars/avatar_1678333936.png' alt='Profile picture' />
-    //   </Stack>
-    // </Container>
   )
 }
 

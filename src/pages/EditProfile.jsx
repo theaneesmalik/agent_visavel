@@ -42,7 +42,14 @@ export default function EditProfile() {
       .then((res) => {
         res.data && navigate('/profile')
       })
-      .catch((err) => console.log(err))
+      .catch((error) => {
+        const err = error.response.data.message === 'Invalid / Expired token'
+        if (err) {
+          navigate('/login')
+          localStorage.clear()
+        }
+        console.log(err)
+      })
   }
   return (
     <>

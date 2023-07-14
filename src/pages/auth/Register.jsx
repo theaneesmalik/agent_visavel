@@ -32,7 +32,7 @@ export default function Register() {
           if (errRes.type) {
             errRes.type === 'username' && setErrors({ username: [errRes.message] })
             errRes.type === 'email' && setErrors({ email: [errRes.message] })
-            errRes.type === 'phone' && setErrors({ phone: [errRes.message] })
+            errRes.type === 'mobile' && setErrors({ mobile: [errRes.message] })
           } else setErrors({ general: errRes.message })
         })
         .finally(() => setLoading(false))
